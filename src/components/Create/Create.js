@@ -1,11 +1,14 @@
 import './Create.css'
 import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 const Craete = () => {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [author, setAuthor] = useState('')
     const [isPending, setIsPending] = useState(false)
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,7 +22,10 @@ const Craete = () => {
             body: JSON.stringify(blog)
         }).then(()=>{
             console.log('new blog added')
+            setIsPending(false)
         })
+        navigate('/');
+        //history.go(-1);
     }
 
     return ( 
